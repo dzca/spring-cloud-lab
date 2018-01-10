@@ -1,0 +1,12 @@
+ruby code
+https://developer.github.com/v3/guides/basics-of-authentication/
+
+API
+https://developer.github.com/apps/building-oauth-apps/authorization-options-for-oauth-apps/
+
+
+result = RestClient.post('https://github.com/login/oauth/access_token',
+                          {:client_id => CLIENT_ID,
+                           :client_secret => CLIENT_SECRET,
+                           :code => session_code},
+                           :accept => :json)

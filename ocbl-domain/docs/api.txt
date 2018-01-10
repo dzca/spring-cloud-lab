@@ -1,0 +1,20 @@
+## mock-github-auth
+[1] get token
+http://localhost:3001/api/access_token?code=xyz
+{"access_token":"AABBCC"}
+
+[2] get user profile
+http://localhost:3001/api/user?access_token=AABBCC
+{'email': 'luke@abc.com'}
+
+[3] simulate github login
+https://localhost:3001/api/login/xyz
+
+## auth-service 
+http://localhost:3002/api/github/callback?code=xyz
+
+## mock-vue
+http://localhost:8080/login/github/:token
+
+## user-service (HTTP header bear token)
+http://localhost:9001/api/users

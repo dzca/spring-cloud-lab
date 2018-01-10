@@ -1,0 +1,11 @@
+    @RequestMapping(value = "/auth/{circleId}/callBack", method = RequestMethod.GET)
+    public void authCallBack(@RequestParam("auth_code") String authCode, @PathVariable("circleId") String circleId, HttpServletResponse response) throws IOException {
+        int state = weChatService.authCallBack(authCode, circleId);
+        response.sendRedirect(callBackHost + configManageServices.getConfigByKey("AUTH_CALL_BACK_PAGE") + "?circleId=" + circleId + "&state=" + state);
+    }
+    
+    //	@RequestMapping(value="/", method = RequestMethod.POST, produces = "application/json") 
+//	public User getUserByEmail(@RequestBody Map<String, String> email) {
+//		log.info("getUserByEmail() email={}", email.get("email"));
+//		return userRepository.findByEmail(email.get("email"));
+//	}
