@@ -5,9 +5,16 @@ eureka:
       
 server:
   port: 5008
+  
 spring:
   application:
     name: zuul-service
+  datasource:
+    url: jdbc:mysql://localhost:3306/onix
+    username: root
+    password: justdoit
+    driverClassName: com.mysql.jdbc.Driver
+    
 zuul:
   routes:
     user:

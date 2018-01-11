@@ -2,7 +2,6 @@ package ca.ocbl.auth.config;
 
 import java.nio.charset.Charset;
 
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.client.ClientHttpRequestFactory;
@@ -16,17 +15,6 @@ import org.springframework.web.client.RestTemplate;
  */
 @Configuration
 public class RestConfig {
-	
-	@Value("${application.rest.github_host}")
-	private String githubHost;
-	
-	public String getGithubHost() {
-		return githubHost;
-	}
-
-	public void setGithubHost(String githubHost) {
-		this.githubHost = githubHost;
-	}
 
 	@Bean
 	public ClientHttpRequestFactory simpleClientHttpRequestFactory() {
@@ -41,6 +29,7 @@ public class RestConfig {
 		RestTemplate template = new RestTemplate(factory);
 		template.getMessageConverters().add(0,
 				new StringHttpMessageConverter(Charset.forName("utf-8")));
+
 		return template;
 	}
 }

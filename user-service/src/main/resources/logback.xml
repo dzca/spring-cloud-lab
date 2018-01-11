@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 
+	<property resource="application.properties" />
     <contextName>user-service</contextName>
-    <property name="LOG_PATH" value="logs" />
-    <property name="APPDIR" value="user-service" />
+    <property name="LOG_PATH" value="${app.log.root}" />
+    <property name="APPDIR" value="${spring.application.name}" />
 
     <appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${APPDIR}/log_error.log</file>

@@ -78,7 +78,7 @@
         </filter>
     </appender>
 
-    <logger name="org.springframework.context.annotation" level="DEBUG" />
+    <logger name="org.springframework.context.annotation" level="INFO" />
     <logger name="ca.ocbl.eureka" level="DEBUG" />
 
     <!-- Final filter for production -->

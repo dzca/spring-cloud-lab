@@ -1,0 +1,16 @@
+server:
+  port: 5002
+
+spring:
+  application:
+    name: user-service
+  cloud:
+    config:
+      profile: dev
+      uri: http://localhost:5888/
+      
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5001/eureka/
+      
