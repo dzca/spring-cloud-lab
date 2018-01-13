@@ -1,0 +1,12 @@
+server:
+  port: 5004
+spring:
+  application:
+    name: feign-service
+  sleuth:
+    sampler:
+      percentage: 1
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:5001/eureka/
