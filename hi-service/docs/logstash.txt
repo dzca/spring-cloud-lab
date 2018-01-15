@@ -1,0 +1,19 @@
+/usr/share/logstash/bin/logstash -f /etc/logstash/conf.d/01-spring-elk.conf --debug
+
+input {
+  tcp {
+    host => "192.168.1.101"
+    port => 5044
+    mode => "server"
+    tags => ["tags"]
+    codec => json_lines
+  }
+}
+
+output {
+  stdout{codec =>json}
+  elasticsearch {
+    hosts => ["192.168.1.101:9200"]
+    index => "%{type}.%{+yyyy.MM.dd.HH}"
+  }
+}

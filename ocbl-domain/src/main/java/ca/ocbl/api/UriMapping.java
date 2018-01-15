@@ -22,7 +22,7 @@ public interface UriMapping {
 	
 	String UI_LOGIN_FAILED="/login/error/%s";
 	
-	String UI_REGISTER="/login/register";
+	String UI_REGISTER="/login/register/%s";
 	
 	// ================================
 	// authorization service 
@@ -35,5 +35,5 @@ public interface UriMapping {
 	
 	String USER_API_ALL="/api/user/all";
 	
-	String USER_REST_FIND_BY_EMAIL="/rest/user/";
+	String USER_REST_FIND_BY_EMAIL="/rest/user/email";
 }

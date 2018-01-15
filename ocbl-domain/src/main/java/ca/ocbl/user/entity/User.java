@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 import ca.ocbl.common.BaseEntity;
+import ca.ocbl.common.UserStatuEnum;
 
 @Entity
 public class User extends BaseEntity {
@@ -19,18 +20,31 @@ public class User extends BaseEntity {
 
 	private String userName;
 
+	@Column(name = "status")
+	private UserStatuEnum status;
+	
 	// @Size(max = 15)
 	// @Column(name = "phone_number", unique = true)
 	@Column(unique=true)
 	private String email;
 
 	public User() {
+		status = status.UNREGISTERED;
 	}
 
-	public User(String userName, String email) {
+	public User(String userName, String email, UserStatuEnum status) {
 		super();
 		this.userName = userName;
 		this.email = email;
+		this.status = status;
+	}
+
+	public UserStatuEnum getStatus() {
+		return status;
+	}
+
+	public void setStatus(UserStatuEnum status) {
+		this.status = status;
 	}
 
 	public Long getId() {

@@ -2,11 +2,9 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:5001/eureka/
+      
 server:
-  port: 5005
+  port: 5888
   
-spring:
-  cloud:
-    config:
-      profile: dev
-      uri: http://localhost:5888/
+
+

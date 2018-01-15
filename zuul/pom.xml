@@ -3,13 +3,13 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>com.forezp</groupId>
-	<artifactId>hi-service</artifactId>
+	<groupId>ca.ocbl</groupId>
+	<artifactId>zuul</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>hi-service</name>
-	<description>Spring Boot Hi service</description>
+	<name>zuul</name>
+	<description>API Gateway Server</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -30,23 +30,22 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-eureka</artifactId>
 		</dependency>
-
+		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
 		</dependency>
-
+		
 		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-zuul</artifactId>
 		</dependency>
-
-
+		
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-sleuth-zipkin-stream</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
@@ -56,11 +55,33 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
+		
+		<!--Redis -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		
+		<dependency>
+			<groupId>ca.ocbl</groupId>
+			<artifactId>ocbl-domain</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
 		</dependency>
 	</dependencies>
 
@@ -77,7 +98,7 @@
 	</dependencyManagement>
 
 	<build>
-		<finalName>${project.name}</finalName>
+		<finalName>zuul</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
@@ -101,7 +122,7 @@
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>com.forezp.EurekaServerApplication</mainClass>
+							<mainClass>ca.ocbl.zuul.ZuulServerApplication</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
