@@ -16,6 +16,7 @@ import ca.ocbl.api.UriMapping;
 import ca.ocbl.auth.config.SystemSettings;
 import ca.ocbl.auth.service.TokenService;
 import ca.ocbl.auth.service.UserService;
+import ca.ocbl.common.UserStatuEnum;
 import ca.ocbl.user.entity.User;
 
 @Controller
@@ -36,14 +37,20 @@ public class GithubRestController {
 	@Autowired
 	UserService userService;
 
+	@RequestMapping("/rest/hi")
+	public String home() {
+		log.info("in hi()");
+		return "hi, i am user :" + systemSettings.getSckUser();
+	}
+	
 	/**
 	 * check if the access_token is in redis
 	 * 
 	 * user could be null, could be registered(approved)=r, unregistered=u, free(not approved yet)=f.
 	 * @return
 	 */
-	@RequestMapping(value = "/access_token/:token", method = RequestMethod.GET, produces = "application/json")
-	public User accessToken(@PathVariable("token") String token) {
+	@RequestMapping(value = "/access_token", method = RequestMethod.GET, produces = "application/json")
+	public User getUser(@RequestParam("token") String token) {
 		log.debug("calling accessToken");
 		User user = tokenService.getUser(token);
 		if (user != null) {
@@ -70,7 +77,7 @@ public class GithubRestController {
 		String path = UriMapping.GITHUB_ACCESS_TOKEN;
 		String url = githubHost + path;
 
-		url = url.format(url, clientId, secret, code);
+		url = String.format(url, clientId, secret, code);
 
 		// query access_token form github with code
 		String result = restHelper.post(url, "");
@@ -86,16 +93,11 @@ public class GithubRestController {
 		User user = validateUser(accessToken, scope);
 
 		String redirectUrl = systemSettings.getWebHost();
-		if (user == null) {
-			// redirect to UI_REGISTER PAGE
-			redirectUrl += UriMapping.UI_REGISTER;
-		} else {
-			// populate user to redis
-			tokenService.saveToken(accessToken, user);
-			// redirect to UI_GITHUB_LOGIN PAGE
-			redirectUrl += UriMapping.UI_GITHUB_LOGIN;
-		}
-		redirectUrl = redirectUrl.format(redirectUrl, accessToken);
+		// populate user to redis
+		tokenService.saveToken(accessToken, user);
+		redirectUrl += UriMapping.UI_GITHUB_LOGIN;
+
+		redirectUrl = String.format(redirectUrl, accessToken);
 		return "redirect:" + redirectUrl;
 	}
 
@@ -122,21 +124,15 @@ public class GithubRestController {
 
 		String email = JSON.parseObject(emailJsonString).getString("email");
 
-		// query user-service to load the user from database
-		// String userHost = systemSettings.getUserHost();
-		// String userUrl = userHost + UriMapping.USER_REST_FIND_BY_EMAIL;
-
 		User user = userService.getUserByEmail(email);
 		log.debug("auth call user service, return user={}", user);
-		// String userJsonString = restHelper.post(url, email);
-		//
-		// // convert string to User object
-		// if(StringUtils.isEmpty(userJsonString)) {
-		// log.info("user is not registered in the user-service database");
-		// return null;
-		// }
-		//
-		// User user = JSON.parseObject(userJsonString, User.class);
+
+		// if user is not registered, we create a new user with state=unregistered
+		if(user==null) {
+			user = new User();
+			user.setEmail(email);
+			user.setStatus(UserStatuEnum.UNREGISTERED);
+		}
 
 		return user;
 	}

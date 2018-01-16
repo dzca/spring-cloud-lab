@@ -2,9 +2,9 @@
 <configuration>
 
 	<property resource="application.properties" />
-    <contextName>${spring.application.name}</contextName>
-    <property name="LOG_PATH" value="${app.log.root}" />
-    <property name="APPDIR" value="${spring.application.name}" />
+	<contextName>${spring.application.name}</contextName>
+	<property name="LOG_PATH" value="${APP_LOG_PATH}" />
+	<property name="APPDIR" value="${spring.application.name}" />
 
     <appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
         <file>${LOG_PATH}/${APPDIR}/log_error.log</file>

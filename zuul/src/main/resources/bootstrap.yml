@@ -17,3 +17,6 @@ zuul:
     auth:
       path: /auth/**
       serviceId: auth
+    hi:
+      path: /hi/**
+      serviceId: hi

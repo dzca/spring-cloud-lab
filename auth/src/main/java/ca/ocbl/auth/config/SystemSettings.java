@@ -1,9 +1,10 @@
 package ca.ocbl.auth.config;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 
+@RefreshScope
 @Configuration
 public class SystemSettings {
 	@Value("${hosts.github}")
@@ -23,6 +24,17 @@ public class SystemSettings {
 	
 	@Value("${github.scope}")
 	private String githubScope;
+	
+	@Value("${sck.user}")
+	private String sckUser;
+
+	public String getSckUser() {
+		return sckUser;
+	}
+
+	public void setSckUser(String sckUser) {
+		this.sckUser = sckUser;
+	}
 	
 	public String getGithubHost() {
 		return githubHost;

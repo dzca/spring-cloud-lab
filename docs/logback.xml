@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<property resource="application.properties" />
-	<contextName>eureka</contextName>
+	<contextName>${spring.application.name}</contextName>
 	<property name="LOG_PATH" value="${APP_LOG_PATH}" />
 	<property name="APPDIR" value="${spring.application.name}" />
 

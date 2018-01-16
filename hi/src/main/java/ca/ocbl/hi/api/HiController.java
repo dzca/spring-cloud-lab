@@ -14,7 +14,7 @@ public class HiController {
 	@Autowired
 	private SystemSettings systemSettings;
 	
-	@RequestMapping("/hi")
+	@RequestMapping("/rest/hi")
 	public String home() {
 		log.info("in hi()");
 		return "hi, i am user :" + systemSettings.getSckUser();
