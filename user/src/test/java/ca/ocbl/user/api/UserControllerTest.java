@@ -54,7 +54,7 @@ public class UserControllerTest {
         
         List<User> users = JSON.parseArray(jsonString, User.class);
         
-        Assert.assertEquals("users size should be 5", 5, users.size());
+        Assert.assertEquals("users size should be 3", 3, users.size());
         for(User u:users) {
         	System.out.println(u.toString());
         }
