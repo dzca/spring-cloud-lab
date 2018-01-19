@@ -1,8 +1,8 @@
 [Unit]
-Description=spring cloud conf server
+Description=spring cloud auth server
 
 [Service]
-ExecStart=/usr/bin/java -jar conf.jar
+ExecStart=/usr/bin/java -jar auth.jar
 Restart=always
 User=dustin
 Group=dustin
