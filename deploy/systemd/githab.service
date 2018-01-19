@@ -1,0 +1,14 @@
+[Unit]
+Description=github api simulator
+
+[Service]
+ExecStart=/usr/bin/node server.js
+Restart=always
+User=dustin
+Group=dustin
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/dustin/gitlab.com/node-labs/mock-github-auth
+
+[Install]
+WantedBy=multi-user.target

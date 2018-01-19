@@ -20,6 +20,7 @@ public class TokenServiceImpl implements TokenService {
 	private RedisTemplate<String, User> redisTemplate;
 
 	public User getUser(String token) {
+		
 		return (User) redisTemplate.opsForValue().get(
 				Constants.REDIS_TOKENS_PREFIX + token);
 	}

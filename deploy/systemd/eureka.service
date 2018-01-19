@@ -1,0 +1,14 @@
+[Unit]
+Description=spring cloud eureka server
+
+[Service]
+ExecStart=/usr/bin/java -jar eureka.jar
+Restart=always
+User=dustin
+Group=dustin
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=APP_LOG_PATH=/a0/cloud/logs
+WorkingDirectory=/a0/cloud
+
+[Install]
+WantedBy=multi-user.target

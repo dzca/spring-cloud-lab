@@ -1,0 +1,13 @@
+test
+
+[1] login callback
+http://api.skyler.ca/auth/rest/github/callback?code=xya
+
+[2] check token
+http://api.skyler.ca/auth/rest/github/access_token/AABBCC
+
+http://api.githab.com/auth/api/access_token/
+
+curl -d "client_id=1a30eaa741eb75611177&client_secret=d9b89bc2938c86b40afb61663dcf1b3576e1b1e2&code=xya" http://api.githab.com/api/access_token
+
+curl --data "birthyear=1905&press=%20OK%20"  http://www.example.com/when.cgi
