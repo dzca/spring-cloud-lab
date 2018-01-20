@@ -123,10 +123,10 @@
 	<root level="INFO">
 		<appender-ref ref="FILEERROR" />
 		<appender-ref ref="FILEWARN" />
-		<appender-ref ref="FILEINFO" />
+
 		<appender-ref ref="FILEDEBUG" />
-		<!-- production environment, remove stdout 
+		<!-- production environment, remove stdout -->
 		<appender-ref ref="STDOUT" />
-		-->
+		
 	</root>
 </configuration>

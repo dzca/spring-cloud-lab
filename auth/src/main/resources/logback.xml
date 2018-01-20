@@ -116,6 +116,7 @@
 		</filter>
 	</appender>
 
+
 	<logger name="org.springframework.context.annotation" level="INFO" />
 	<logger name="ca.ocbl" level="DEBUG" />
 
@@ -123,7 +124,7 @@
 	<root level="INFO">
 		<appender-ref ref="FILEERROR" />
 		<appender-ref ref="FILEWARN" />
-		<appender-ref ref="FILEINFO" />
+
 		<appender-ref ref="FILEDEBUG" />
 		<!-- production environment, remove stdout -->
 		<appender-ref ref="STDOUT" />

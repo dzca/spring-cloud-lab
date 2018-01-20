@@ -132,33 +132,11 @@
 			</plugin>
 
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-jar-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>*.xml</exclude>
-						<exclude>*.properties</exclude>
-					</excludes>
-
-					<archive>
-						<manifest>
-							<addClasspath>true</addClasspath>
-							<classpathPrefix>libs/</classpathPrefix>
-							<mainClass>ca.ocbl.user.Application</mainClass>
-						</manifest>
-						<!-- 用maven在MANIFEST.MF资料中的Class-Path中增加当前目录(.) -->
-						<manifestEntries>
-							<Class-Path>.</Class-Path>
-						</manifestEntries>
-					</archive>
-				</configuration>
-			</plugin>
-			<plugin>
 				<artifactId>maven-assembly-plugin</artifactId>
 				<configuration>
 					<archive>
 						<manifest>
-							<mainClass>ca.ocbl.auth.Application</mainClass>
+							<mainClass>ca.ocbl.auth.AuthApplication</mainClass>
 						</manifest>
 					</archive>
 					<descriptorRefs>
