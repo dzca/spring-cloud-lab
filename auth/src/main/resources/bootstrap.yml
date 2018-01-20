@@ -9,5 +9,5 @@ server:
 spring:
   cloud:
     config:
-      profile: dev
+      profile: prod
       uri: http://localhost:5888/
