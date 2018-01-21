@@ -19,6 +19,7 @@ $ git push origin [name_of_your_new_branch]
 ==== TO BE TESTED
 https://github.com/Kunena/Kunena-Forum/wiki/Create-a-new-branch-with-git-and-manage-branches
 
+```
 Add a new remote for your branch :
 
 $ git remote add [name_of_your_remote] 
@@ -46,3 +47,4 @@ $ git branch -D [name_of_your_new_branch]
 Delete the branch on github :
 
 $ git push origin :[name_of_your_new_branch]
+```
