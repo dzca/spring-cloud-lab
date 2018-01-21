@@ -1,0 +1,14 @@
+[Unit]
+Description=issue track server
+
+[Service]
+ExecStart=/usr/bin/node server.8000.js
+Restart=always
+User=dustin
+Group=dustin
+Environment=PATH=/usr/bin:/usr/local/bin
+Environment=NODE_ENV=production
+WorkingDirectory=/home/dustin/github/itrack
+
+[Install]
+WantedBy=multi-user.target
