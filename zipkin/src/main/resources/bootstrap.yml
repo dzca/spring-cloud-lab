@@ -5,3 +5,9 @@ eureka:
     
 server:
   port: 5011
+
+spring:
+  cloud:
+    config:
+      profile: prod
+      uri: http://localhost:5888/
