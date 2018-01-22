@@ -15,7 +15,7 @@ import ca.ocbl.api.UriMapping;
 import ca.ocbl.auth.config.SystemSettings;
 import ca.ocbl.auth.service.TokenService;
 import ca.ocbl.auth.service.UserService;
-import ca.ocbl.common.UserStatuEnum;
+import ca.ocbl.common.type.UserStatuEnum;
 import ca.ocbl.user.entity.User;
 
 @Controller

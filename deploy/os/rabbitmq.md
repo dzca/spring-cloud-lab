@@ -59,7 +59,7 @@ $ sudo rabbitmqctl add_user admin password
 $ sudo rabbitmqctl set_user_tags admin administrator
 $ sudo rabbitmqctl set_permissions -p / admin ".*" ".*" ".*"
 
-rabbitmqctl change_password guest ocbl$2018
+rabbitmqctl change_password guest ocbl2018
 步骤5 - 安装RabbitMQ Web管理控制台
 
  RabbitMQ还提供用于管理整个RabbitMQ的Web管理控制台。 启用Web管理控制台在系统上运行以下命令。 Web管理控制台可帮助您管理RabbitMQ服务器。
