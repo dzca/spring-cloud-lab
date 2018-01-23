@@ -15,8 +15,5 @@ spring:
 zuul:
   routes:
     auth:
-      path: /auth/**
-      serviceId: auth
-    hi:
-      path: /hi/**
-      serviceId: hi
+      path: /ocbl/**
+      serviceId: ocbl

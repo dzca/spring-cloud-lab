@@ -1,0 +1,38 @@
+
+
+    -Xms – JVM启动时的初始堆大小
+    -Xmx – 最大堆大小
+    -Xmn - 年轻代的大小，其余的空间是老年代
+
+
+    
+    
+    -XX:MaxPermSize to limit perm gen size
+    -XX:MaxHeapFreeRatio to facilitate more aggressive heap shrinkage
+    ====
+-Xms16m \
+-Xmx48m \
+-XX:MaxMetaspaceSize=64m \
+-XX:CompressedClassSpaceSize=8m \
+-Xss256k \
+-Xmn8m \
+-XX:InitialCodeCacheSize=4m \
+-XX:ReservedCodeCacheSize=8m \
+-XX:MaxDirectMemorySize=16m
+   
+    ====
+java \
+-Xms32m \
+-Xmx72m \
+-XX:MaxMetaspaceSize=64m \
+-XX:CompressedClassSpaceSize=24m \
+-Xss256k \
+-Xmn36m \
+-XX:InitialCodeCacheSize=4m \
+-XX:ReservedCodeCacheSize=8m \
+-XX:MaxDirectMemorySize=16m -jar eureka.jar
+
+
+Heap=Xmx=72m
+NonHeap=MaxMetaspaceSize + CompressedClassSpaceSize + ReservedCodeCacheSize
++ Xss * number_of_threads =  16 + 24 + 8 = 48m 

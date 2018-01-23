@@ -10,13 +10,9 @@
     <packaging>pom</packaging>
 
     <modules>
-		<module>ocbl-domain</module>
         <module>eureka</module>
-        <module>conf</module>
-        <module>zipkin</module>
-        <module>user</module>
-		<module>auth</module>
-		<module>zuul</module>
+	<module>ocbl-api</module>
+	<module>zuul</module>
     </modules>
 
 </project>
