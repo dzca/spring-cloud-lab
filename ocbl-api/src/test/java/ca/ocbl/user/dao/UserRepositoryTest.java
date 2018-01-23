@@ -14,7 +14,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import ca.ocbl.boot.ApiServerApplication;
+import ca.ocbl.ApiServerApplication;
 import ca.ocbl.common.domain.User;
 import ca.ocbl.common.enums.UserStatuEnum;
 

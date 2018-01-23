@@ -116,11 +116,11 @@
 		</filter>
 	</appender>
 
-	<logger name="org.springframework.context.annotation" level="INFO" />
+	<logger name="org.springframework.boot" level="DEBUG" />
 	<logger name="ca.ocbl" level="DEBUG" />
 
 	<!-- Final filter for production -->
-	<root level="DEBUG">
+	<root level="INFO">
 		<appender-ref ref="FILEERROR" />
 		<appender-ref ref="FILEWARN" />
 		<appender-ref ref="FILEDEBUG" />

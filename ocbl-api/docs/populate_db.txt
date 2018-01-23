@@ -1,0 +1,9 @@
+[1] Spring JPA with Hibernate
+a. spring.jpa.hibernate.ddl-auto=update
+b. import.sql in classpath
+
+[2] Spring JDBC
+a. spring.jpa.hibernate.ddl-auto=update
+b. schema.sql in classpath
+c. use DROP TABLE IF EXISTS
+d. use CREATE TABLE IF NOT EXISTS

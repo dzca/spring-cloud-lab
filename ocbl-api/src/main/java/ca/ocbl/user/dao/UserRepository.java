@@ -1,12 +1,10 @@
 package ca.ocbl.user.dao;
 
-import java.util.List;
-
-import org.springframework.data.repository.CrudRepository;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import ca.ocbl.common.domain.User;
 
-public interface UserRepository extends CrudRepository<User, Long> {
-	List<User> findByEmail(@Param("email") String mail);
+public interface UserRepository extends JpaRepository<User, Long> {
+	// @Query("select u from User u where u.email = ?1")
+	public User findByEmail(String email);
 }

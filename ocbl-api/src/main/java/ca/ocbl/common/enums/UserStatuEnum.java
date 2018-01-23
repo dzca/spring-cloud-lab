@@ -1,24 +1,18 @@
 package ca.ocbl.common.enums;
 
 public enum UserStatuEnum {
-	UNREGISTERED(1, "unregistered"), 
-	REGISTERED(2, "registered"), 
-	FREE(3, "free");
+	UNREGISTERED(1), 
+	REGISTERED(2), 
+	FREE(3);
 
 	private final int code;
-	private final String name;
 
-	private UserStatuEnum(int code, String name) {
+	private UserStatuEnum(int code) {
 		this.code = code;
-		this.name = name;
 	}
 
 	public int getCode() {
 		return code;
-	}
-
-	public String getName() {
-		return name;
 	}
 
 }
