@@ -1,0 +1,115 @@
+@SpringBootTest - load application context
+1) print loaded component in screen
+2) customize components in test class
+
+===========================================================
+```java
+import org.springframework.boot.test.mock.mockito.MockBean;
+...
+@MockBean
+MyService myservice;
+```
+
+* The class is included in the spring-boot-test library.
+* It allows to add Mockito mocks in a Spring ApplicationContext.
+* If a bean, compatible with the declared class exists in the context, it replaces it by the mock.
+* If it is not the case, it adds the mock in the context as a bean.
+
+import org.mockito.Mock;
+...
+@Mock
+MyService myservice;
+
+Note that to enable Mockito annotations during test executions, the MockitoAnnotations.initMocks(this) static method has to be called.
+To avoid side effect between tests, it is advised to do it before each test execution :
+
+@Before 
+public void initMocks() {
+    MockitoAnnotations.initMocks(this);
+}
+
+Another way to enable Mockito annotations is annotating the test class with @RunWith by specifying the MockitoJUnitRunner that does this task and also other useful things :
+
+@RunWith(org.mockito.runners.MockitoJUnitRunner.class)
+public MyClassTest{...}
+
+=============================================================
+package com.manulife.rs.bank.profile.controller;
+
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.mockito.Matchers.eq;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.mockito.Mockito.*;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+
+import com.manulife.ws.bank.client.wsdl.CustomerDetails;
+
+@WebAppConfiguration
+@RunWith(MockitoJUnitRunner.class)
+@WebMvcTest(IProfileController.class)
+public class ProfileControllerMockTest {
+
+	@Autowired
+	private MockMvc mvc;
+
+	@MockBean
+	private IProfileController profileController;
+
+	HttpHeaders requestHeaders = new HttpHeaders();
+	String getProfileDetailsEndpoint = "/";
+	
+	@Test
+	public void user_Get_Profile_Details_Successfully() throws Exception {
+
+		requestHeaders.set("Authorization","AABB");
+		CustomerDetails customerDetails = new CustomerDetails();
+		customerDetails.setFirstName("Test_name");
+
+		ResponseEntity<Object> response = new ResponseEntity<Object>(customerDetails, HttpStatus.OK);
+		doReturn(response).when(profileController).getClientDetails(eq(null),eq(null),
+				eq(null),eq(null),eq(null),eq(null),eq(null),eq(null),eq(null),eq(null));
+//	    given(profileController.getClientDetails(eq(null),eq(null),
+//				eq(null),eq(null),eq(null),eq(null),eq(null),eq(null),eq(null),eq(null))).willReturn(response);
+	       
+		mvc
+				.perform(get(getProfileDetailsEndpoint).headers(requestHeaders).
+						contentType(MediaType.APPLICATION_JSON)
+						.accept(MediaType.APPLICATION_JSON));
+//				.andDo(print()).andExpect(status().isOk()).andExpect(jsonPath("$", notNullValue())).andDo(print())
+//				.andExpect(status().isOk()).andExpect(jsonPath("$.customerDetails", notNullValue()));
+
+	}
+}
+
+controller
+==============
+		CustomerDetails customerDetails = new CustomerDetails();
+		customerDetails.setFirstName("Test_name");
+
+		ResponseEntity<Object> response = new ResponseEntity<Object>(customerDetails, HttpStatus.OK);
+		doReturn(response).when(profileController).getClientDetails(eq(null),eq(null),
+				eq(null),eq(null),eq(null),eq(null),eq(null),eq(null),eq(null),eq(null));
+		
+Service
+=============		
+		CustomerDetails customerDetails = new CustomerDetails();
+		GetClientDetailsResponse clientDetailResponse = new GetClientDetailsResponse();
+		clientDetailResponse.setCustomerDetails(customerDetails);
+
+		// inject mocks call result
+		 when(mockProfileService.getClientDetails(eq("AABB"), any(CommonParms.class))).thenReturn(clientDetailResponse);
