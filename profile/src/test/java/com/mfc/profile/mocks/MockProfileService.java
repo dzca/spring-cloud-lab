@@ -1,4 +1,4 @@
-package com.mfc.profile.service;
+package com.mfc.profile.mocks;
 
 import java.util.Map;
 
@@ -10,10 +10,12 @@ import org.springframework.stereotype.Service;
 
 import com.mfc.profile.dao.ProfileRepository;
 import com.mfc.profile.domain.User;
+import com.mfc.profile.service.ProfileService;
 
-@Profile("!mock")
 @Service
-public class ProfileServiceImpl implements ProfileService{
+@Profile("mock")
+public class MockProfileService implements ProfileService {
+
 	protected Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
@@ -28,4 +30,5 @@ public class ProfileServiceImpl implements ProfileService{
 		logger.debug("====> service.get() called");
 		return dao.get(key);
 	}
+
 }
